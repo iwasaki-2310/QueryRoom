@@ -11,5 +11,6 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": [
     "source.fixAll.esslint"
-  ]
+  ],
+  "liveServer.settings.port": 5501
 }
