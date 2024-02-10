@@ -1,5 +1,5 @@
 import React from 'react'
-import { signInWithPopup, signOut } from 'firebase/auth'
+import { signInWithPopup } from 'firebase/auth'
 import { auth, provider } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
