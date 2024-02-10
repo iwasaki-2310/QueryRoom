@@ -15,7 +15,6 @@ const Home = () => {
       ) : (
         <SignInButton />
       )}
-      <SignInButton />
     </div>
   )
 }
