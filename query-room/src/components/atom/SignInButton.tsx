@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { provider, useAuth } from '../providers/GoogleLoginUserProvider'
 import { signInWithPopup } from 'firebase/auth'
+import { Button } from '@chakra-ui/react'
 
 // Googleサインインボタン
 export const SignInButton: React.FC<{ provider: typeof provider }> = ({ provider }) => {
@@ -15,5 +16,18 @@ export const SignInButton: React.FC<{ provider: typeof provider }> = ({ provider
       console.error('ログインに失敗しました', error)
     }
   }
-  return <button onClick={signInWithGoogle}>Googleでサインイン</button>
+  return (
+    <Button
+      onClick={signInWithGoogle}
+      mt={8}
+      bg="customPurple.900"
+      color={'white'}
+      fontSize={"lg"}
+      padding={7}
+      transition="all 0.5s"
+      _hover={{ color: 'customPurple.900', bg: 'white', transition: 'all 0.5s' }}
+    >
+      Googleアカウントでログイン
+    </Button>
+  )
 }
