@@ -1,6 +1,6 @@
 import { provider } from '../providers/GoogleLoginUserProvider'
 import { SignInButton } from '../atom/SignInButton'
-import { Box, Flex, flexbox } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 
 export const LoginPage: React.FC = () => {
   return (
