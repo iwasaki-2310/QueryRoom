@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { useAuth } from '../providers/GoogleLoginUserProvider'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { SignInButton } from '../atom/SignInButton'
