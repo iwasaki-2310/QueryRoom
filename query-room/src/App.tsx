@@ -1,13 +1,14 @@
 import React from 'react'
 import './App.css'
-import Home from './components/Home'
+import Home from './components/page/Home'
+import { AuthProvider } from './components/providers/GoogleLoginUserProvider'
 
 function App() {
   return (
-    <div className="App">
+    <AuthProvider>
       <h1>QueryRoom</h1>
       <Home />
-    </div>
+    </AuthProvider>
   )
 }
 
