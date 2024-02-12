@@ -16,11 +16,13 @@ export const SignOutButton = () => {
   return (
     <Button
       onClick={signOutWithGoogle}
-      bg="customPurple.900"
-      color={'white'}
+      display="flex"
+      margin='40px auto 0'
+      bg="white"
+      color={'customPurple.900'}
       padding={7}
       transition="all 0.5s"
-      _hover={{ color: 'customPurple.900', bg: 'white', transition: 'all 0.5s' }}
+      _hover={{ color: 'white', bg: 'customPurple.900', transition: 'all 0.5s' }}
     >
       サインアウト
     </Button>

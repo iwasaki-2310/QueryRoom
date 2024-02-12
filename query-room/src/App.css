@@ -2,10 +2,5 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   background: #CCBBCC;
-}
-
-#root {
-  margin: 200px auto 0;
 }

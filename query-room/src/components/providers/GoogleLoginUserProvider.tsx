@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getAuth, Auth, GoogleAuthProvider } from 'firebase/auth'
-import { ReactNode, createContext, useContext } from 'react'
+import { ReactNode, createContext, useContext, useState } from 'react'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBXTpEtEFQzXNXRS9s_vy1sABAhTRTuwvA',
@@ -24,10 +24,12 @@ const provider = new GoogleAuthProvider()
 interface AuthContextType {
   auth: Auth
   provider: GoogleAuthProvider
+  signInResult: any
+  setSignInResult: (result: any) => void
 }
 
 // AuthContextの作成
-const AuthContext = createContext<AuthContextType>({ auth, provider })
+const AuthContext = createContext<AuthContextType>({ auth, provider, signInResult: null, setSignInResult: () => {} })
 
 // AuthProviderコンポーネントのProps型定義
 interface AuthProviderProps {
@@ -36,7 +38,8 @@ interface AuthProviderProps {
 
 // AuthProviderコンポーネント作成
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  return <AuthContext.Provider value={{ auth, provider }}>{children}</AuthContext.Provider>
+  const [signInResult, setSignInResult] = useState<any>(null)
+  return <AuthContext.Provider value={{ auth, provider, signInResult, setSignInResult }}>{children}</AuthContext.Provider>
 }
 
 // カスタムフック
