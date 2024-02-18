@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, Auth, GoogleAuthProvider } from 'firebase/auth'
 import { ReactNode, createContext, useContext, useState } from 'react'
+import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBXTpEtEFQzXNXRS9s_vy1sABAhTRTuwvA',
@@ -16,12 +17,16 @@ const firebaseConfig = {
 // FireBaseの初期化
 const app = initializeApp(firebaseConfig)
 
+// Firestoreのインスタンスを初期化
+const db = getFirestore(app)
+
 // authオブジェクトとプロバイダーの作成
 const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
 
 // Contextの型定義
 interface AuthContextType {
+  db: any
   auth: Auth
   provider: GoogleAuthProvider
   signInResult: any
@@ -29,7 +34,13 @@ interface AuthContextType {
 }
 
 // AuthContextの作成
-const AuthContext = createContext<AuthContextType>({ auth, provider, signInResult: null, setSignInResult: () => {} })
+const AuthContext = createContext<AuthContextType>({
+  db,
+  auth,
+  provider,
+  signInResult: null,
+  setSignInResult: () => {},
+})
 
 // AuthProviderコンポーネントのProps型定義
 interface AuthProviderProps {
@@ -39,10 +50,14 @@ interface AuthProviderProps {
 // AuthProviderコンポーネント作成
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [signInResult, setSignInResult] = useState<any>(null)
-  return <AuthContext.Provider value={{ auth, provider, signInResult, setSignInResult }}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={{ db, auth, provider, signInResult, setSignInResult }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 // カスタムフック
 export const useAuth = (): AuthContextType => useContext(AuthContext)
 
-export { auth, provider }
+export { db, auth, provider }

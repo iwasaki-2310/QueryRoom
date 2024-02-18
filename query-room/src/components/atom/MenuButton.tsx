@@ -14,9 +14,13 @@ export const MenuButton: FC<MenuButtonProps> = ({ menuTitle, menuDescription, le
     <>
       <Button
         onClick={onOpen}
-        display="block"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
         marginLeft={leftMargin}
-        padding="105px 60px 15px"
+        w="23.79vw"
+        maxW="325px"
+        padding="50px 0"
         height="fit-content"
         bg="customPurple.900"
         color="white"
@@ -24,8 +28,8 @@ export const MenuButton: FC<MenuButtonProps> = ({ menuTitle, menuDescription, le
         transition="all 0.5s"
         _hover={{ color: 'customPurple.900', bg: 'white', transition: 'all 0.5s' }}
       >
-        <Text fontSize={'xl'}>{menuTitle}</Text>
-        <Text mt="75px" fontSize={'md'}>
+        <Text fontSize={'xl'} whiteSpace="wrap">{menuTitle}</Text>
+        <Text mt="60px" fontSize={'md'} whiteSpace="wrap">
           {menuDescription}
         </Text>
       </Button>

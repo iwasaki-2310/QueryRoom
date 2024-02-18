@@ -13,7 +13,6 @@ import {
 } from '@chakra-ui/react'
 import { FC, memo, useState } from 'react'
 import { PrimaryButton } from '../../atom/PrimaryButton'
-import { EnteringButton } from '../../atom/EnteringButton'
 
 type Props = {
   isOpen: boolean
@@ -27,33 +26,37 @@ export const MenuModal: FC<Props> = memo((props) => {
   const [roomPass, setRoomPass] = useState('')
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} autoFocus={false} motionPreset="slideInBottom">
+    <Modal isOpen={isOpen} onClose={onClose} autoFocus={false} motionPreset="slideInBottom" size="3xl">
       <ModalOverlay>
-        <ModalContent pb={6}>
+        <ModalContent margin="210px 0px 0 270px" pb={3}>
           <ModalHeader>{isNew ? '新規ルーム作成' : 'ルームを選択'}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody mx={4}>
-            <Stack spacing={4}>
+          <ModalBody>
+            <Stack>
               <FormControl>
-                <Flex>
-                  <FormLabel>ルーム名</FormLabel>
-                  <Input value={roomName} onChange={(e) => setRoomName(e.target.value)} />
-                </Flex>
+                <FormLabel>ルーム名</FormLabel>
+                <Input value={roomName} onChange={(e) => setRoomName(e.target.value)} />
               </FormControl>
               <FormControl>
-                <Flex>
-                  <FormLabel>パスワード</FormLabel>
-                  <Input value={roomPass} onChange={(e) => setRoomPass(e.target.value)} />
-                </Flex>
+                <FormLabel>パスワード</FormLabel>
+                <Input value={roomPass} onChange={(e) => setRoomPass(e.target.value)} />
               </FormControl>
             </Stack>
-          </ModalBody>
-          <Flex justifyContent="space-between">
-            <PrimaryButton bgColor="#30A320" color="#fff">
+          <Flex mt={5} justifyContent="space-between">
+            <PrimaryButton onClose={onClose} bgColor="#30A320" color="#fff">
               戻る
             </PrimaryButton>
-            <EnteringButton bgColor="#430B53" color="#fff" />
+            <PrimaryButton
+              buttonType={'makeNewRoom'}
+              roomName={roomName}
+              roomPassword={roomPass}
+              bgColor="#430B53"
+              color="#fff"
+            >
+              新規作成
+            </PrimaryButton>
           </Flex>
+          </ModalBody>
         </ModalContent>
       </ModalOverlay>
     </Modal>
