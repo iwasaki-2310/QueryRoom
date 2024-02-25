@@ -14,6 +14,9 @@ export const customTheme = extendTheme({
         justifyContent: 'center',
         backgroundColor: '#CCBBCC',
       },
+      '.custom-link': {
+        color: '#0080ff',
+      },
     },
   },
 })
