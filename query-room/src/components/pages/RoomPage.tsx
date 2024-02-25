@@ -1,7 +1,7 @@
-import { Box, Button, Text } from '@chakra-ui/react'
+import { Box, Button } from '@chakra-ui/react'
 import { doc, getFirestore, onSnapshot, DocumentData, addDoc, collection, query, orderBy } from 'firebase/firestore'
 import Linkify from 'linkify-react'
-import { ReactNode, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 export const RoomPage = () => {
