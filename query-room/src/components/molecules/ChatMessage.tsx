@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { roomData } from '../../types/roomData'
 import { UserIcon } from '../atom/UserIcon'
 import { Message } from '../atom/Message'

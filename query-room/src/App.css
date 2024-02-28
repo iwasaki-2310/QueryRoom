@@ -7,7 +7,7 @@ body {
 
 .chatArea {
   position: relative;
-  width: 78.92vw;
+  width: 100%;
 }
 
 .message__area {
