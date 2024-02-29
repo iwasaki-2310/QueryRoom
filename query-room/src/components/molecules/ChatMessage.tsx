@@ -11,10 +11,10 @@ export const ChatMessage: React.FC<roomData> = ({ messages }) => {
         {messages
           ? messages.map(({ message, time }, index) => (
               <div key={index} className="message__part">
-                <Flex>
-                  <UserIcon />
+                <Flex className="message__header">
+                  <UserIcon boxSize="43px" />
                   <Flex className="message__head">
-                    <UserName mt={'-10px'} fontSize="18px" fontWeight="bold" />
+                    <UserName mt={'-10px'} fontSize="16px" fontWeight="bold" />
                     <span className="message__time">{time}</span>
                   </Flex>
                 </Flex>

@@ -42,20 +42,20 @@ export const MenuModal: FC<Props> = memo((props) => {
                 <Input value={roomPass} onChange={(e) => setRoomPass(e.target.value)} />
               </FormControl>
             </Stack>
-          <Flex mt={5} justifyContent="space-between">
-            <PrimaryButton onClose={onClose} bgColor="#30A320" color="#fff">
-              戻る
-            </PrimaryButton>
-            <PrimaryButton
-              buttonType={'makeNewRoom'}
-              roomName={roomName}
-              roomPassword={roomPass}
-              bgColor="#430B53"
-              color="#fff"
-            >
-              新規作成
-            </PrimaryButton>
-          </Flex>
+            <Flex mt={5} justifyContent="space-between">
+              <PrimaryButton buttonType={'escapeModal'} onClose={onClose} bgColor="#30A320" color="#fff">
+                戻る
+              </PrimaryButton>
+              <PrimaryButton
+                buttonType={'makeNewRoom'}
+                roomName={roomName}
+                roomPassword={roomPass}
+                bgColor="#430B53"
+                color="#fff"
+              >
+                新規作成
+              </PrimaryButton>
+            </Flex>
           </ModalBody>
         </ModalContent>
       </ModalOverlay>

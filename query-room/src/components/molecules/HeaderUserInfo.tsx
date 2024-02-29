@@ -6,7 +6,7 @@ import { Flex } from '@chakra-ui/react'
 export const HeaderUserInfo = () => {
   return (
     <Flex justifyContent="center" alignItems="center" mt="35px">
-      <UserIcon />
+      <UserIcon boxSize="58px" />
       <UserName mt={'16px'} ml={'15px'} fontSize={'14px'} fontWeight={'bold'} color={'white'} />
     </Flex>
   )

@@ -1,8 +1,14 @@
 import { Image } from '@chakra-ui/react'
 import { useAuth } from '../providers/GoogleLoginUserProvider'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import React from 'react'
 
-export const UserIcon = () => {
+type userIconProps = {
+  boxSize: string
+}
+
+export const UserIcon: React.FC<userIconProps> = (props) => {
+  const { boxSize } = props
   const { auth } = useAuth()
   const [user] = useAuthState(auth)
   if (!user) {
@@ -12,7 +18,7 @@ export const UserIcon = () => {
       <>
         <Image
           borderRadius="full"
-          boxSize="58px"
+          boxSize={boxSize}
           src={user.photoURL || undefined}
           alt={user.displayName || undefined}
         />

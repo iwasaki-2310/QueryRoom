@@ -66,11 +66,13 @@ export const RoomPage = () => {
             {/* チャットヘッダー */}
             <ChatHeader roomName={roomData.roomName} />
 
-            {/* メッセージ */}
-            <ChatMessage messages={messages} />
+            <div className="chatArea__body">
+              {/* メッセージ */}
+              <ChatMessage messages={messages} />
 
-            {/* 入力エリア */}
-            <InputMessage roomId={roomId} />
+              {/* 入力エリア */}
+              <InputMessage roomId={roomId} />
+            </div>
           </Box>
         </>
       ) : null}
