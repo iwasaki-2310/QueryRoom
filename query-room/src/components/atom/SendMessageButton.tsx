@@ -24,7 +24,7 @@ export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
       setTimerId(null)
     }
     setTimeLeft(delayTime ? delayTime * 60 : 0)
-  }, [isCancel, delayTime])
+  }, [isSent, timerId, toast])
 
   const resetDelayTime = () => {
     setDelayTime && setDelayTime(0)
