@@ -129,7 +129,7 @@ body {
 
 .Input-buttons__right {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
 }
 .Input-buttons__right__cancel-text {
   margin: 0 0 3px 15px;
