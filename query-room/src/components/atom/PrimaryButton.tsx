@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react'
 import { addDoc, collection, getFirestore } from 'firebase/firestore'
 import React, { FC } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 type ButtonProps = {
   roomName?: string
@@ -14,6 +14,11 @@ type ButtonProps = {
   onClose?: () => void
   onClick?: () => void
   setInputMessage?: (inputMessage: string) => void
+  onChangeMode?: () => void
+  setDelayTime?: () => void
+  resetDelayTime?: () => void
+  onSendClick?: () => void
+  delayTime?: number
 }
 
 export const PrimaryButton: FC<ButtonProps> = (props) => {
@@ -24,12 +29,10 @@ export const PrimaryButton: FC<ButtonProps> = (props) => {
     onClose,
     roomName = '',
     roomPassword = '',
-    setInputMessage,
-    inputMessage,
     children,
+    onChangeMode,
+    onClick,
   } = props
-  const db = getFirestore()
-  const { roomId } = useParams()
   const navigate = useNavigate()
 
   // ======================================================
@@ -52,26 +55,6 @@ export const PrimaryButton: FC<ButtonProps> = (props) => {
     }
   }
 
-  // ======================================================
-  // 関数名: sendMessage
-  // 概要: 送信ボタンがクリックされたら、入力したメッセージをDBのmessagesに格納して、テキストエリアを初期化
-  // ======================================================
-  const sendMessage = async () => {
-    if (roomId && inputMessage && inputMessage.trim() !== '') {
-      try {
-        await addDoc(collection(db, 'rooms', roomId, 'messages'), {
-          message: inputMessage,
-          createdAd: new Date(),
-        })
-        if (setInputMessage) {
-          setInputMessage('')
-        }
-      } catch (e) {
-        console.log('メッセージの送信に失敗しました。', e)
-      }
-    }
-  }
-
   return (
     <Button
       onClick={() => {
@@ -79,9 +62,12 @@ export const PrimaryButton: FC<ButtonProps> = (props) => {
           HandleCreateRoom(roomName, roomPassword)
         } else if (buttonType === 'makeNewRoom' && onClose) {
           onClose()
-        } else if (buttonType === 'sendMessage') {
-          console.log('aaaaaaa')
-          sendMessage()
+        } else if (buttonType === 'sendMessage' && onClick) {
+          onClick()
+        } else if (buttonType === 'changeMode' && onChangeMode) {
+          onChangeMode()
+        } else if (onClick) {
+          onClick()
         }
       }}
       backgroundColor={bgColor}

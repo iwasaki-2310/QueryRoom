@@ -54,8 +54,9 @@ body {
 }
 
 .message__time {
-  font-size: 13px;
+  color: #00000078;
   margin: -10px 0 0 20px;
+  font-size: 12px;
 }
 
 .message__word {
@@ -84,20 +85,67 @@ body {
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
 }
 
-.input__message__word {
+.input-message__word {
   outline: none;
   width: 100%;
-  height: 136px;
+  height: 150px;
   font-size: 16px;
   line-height: calc(28 / 22);
 }
 
+.input-message__word.input-message__word__question {
+  height: 106px;
+}
+
 .send-message__button {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+  margin: 0 0 0 25px;
 }
 
 .chatroom__header__btns button + button {
   margin: 0 0 0 30px;
+}
+
+.question-mode__desc {
+  position: relative;
+  margin: 0 0 15px;
+  padding: 0 0 5px;
+  width: fit-content;
+  font-weight: bold;
+}
+
+.input-message__footer {
+  display: flex;
+  justify-content: space-between;
+}
+.question-mode__desc::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 110%;
+  height: 2px;
+  background: gray;
+}
+
+.Input-buttons__right {
+  display: flex;
+  align-items: end;
+}
+.Input-buttons__right__cancel-text {
+  margin: 0 0 3px 15px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.delay-input__button {
+}
+
+.delay-input__box {
+  width: 55px;
+  height: 34px;
+  border: 2px solid #9D9D9D;
+}
+
+.delay-input__text {
+  margin: 0 0 0 5px;
 }

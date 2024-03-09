@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom'
 import { ChatHeader } from '../organisms/chat/ChatHeader'
 import { ChatMessage } from '../molecules/ChatMessage'
 import { InputMessage } from '../organisms/chat/InputMessage'
+import { useAuth } from '../providers/GoogleLoginUserProvider'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 export const RoomPage = () => {
   const { roomId } = useParams()
@@ -12,12 +14,18 @@ export const RoomPage = () => {
   const db = getFirestore()
 
   const [messages, setMessages] = useState<{ message: string; time: string }[]>([])
+  const { auth, setSignInResult, userName, setUserName, userAvatar, setUserAvatar, ...userInfo } = useAuth()
+  const [user] = useAuthState(auth)
+
+  // console.log(`ユーザー名:${user?.displayName}`)
+  // console.log(`アバターURL:${userAvatar}`)
 
   // ======================================================
   // 関数名: エフェクトフック
   // 概要: ルーム情報の初期化、常時監視
   // ======================================================
   useEffect(() => {
+    // console.log(userAvatar)
     const fetchRoomData = async () => {
       if (roomId) {
         // ルーム情報を取得
@@ -38,6 +46,8 @@ export const RoomPage = () => {
             id: doc.id,
             ...doc.data(),
             message: doc.data().message,
+            displayName: doc.data().displayName,
+            profilePicture: doc.data().profilePicture,
             time: doc
               .data()
               .createdAd.toDate()

@@ -4,5 +4,5 @@ export type roomData = {
   roomData?: DocumentData | null
   roomId?: string
   roomName?: string
-  messages?: { message: string; time: string }[]
+  messages?: { message: string; time: string; profilePicture: string }[]
 }
