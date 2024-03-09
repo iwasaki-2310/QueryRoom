@@ -4,12 +4,11 @@ import { PrimaryButton } from './PrimaryButton'
 import { useToast } from '@chakra-ui/toast'
 import { addDoc, collection, getFirestore } from 'firebase/firestore'
 import { useParams } from 'react-router-dom'
-import { auth, useAuth } from '../providers/GoogleLoginUserProvider'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { useAuth } from '../providers/GoogleLoginUserProvider'
 
 export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
-  const { userName, setUserName, userAvatar, setUserAvatar } = useAuth()
-  const [user] = useAuthState(auth)
+  const { userName, userAvatar } = useAuth()
+
   const { setInputMessage, inputMessage, delayTime, setDelayTime, startCountDown, setIsSent, isCancel, isSent } = props
   const toast = useToast()
   const [timeLeft, setTimeLeft] = useState(delayTime ? delayTime * 60 : 0) // 秒単位で時間を設定

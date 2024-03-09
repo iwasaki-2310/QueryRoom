@@ -5,8 +5,6 @@ import { useParams } from 'react-router-dom'
 import { ChatHeader } from '../organisms/chat/ChatHeader'
 import { ChatMessage } from '../molecules/ChatMessage'
 import { InputMessage } from '../organisms/chat/InputMessage'
-import { useAuth } from '../providers/GoogleLoginUserProvider'
-import { useAuthState } from 'react-firebase-hooks/auth'
 
 export const RoomPage = () => {
   const { roomId } = useParams()
@@ -14,8 +12,6 @@ export const RoomPage = () => {
   const db = getFirestore()
 
   const [messages, setMessages] = useState<{ message: string; time: string }[]>([])
-  const { auth, setSignInResult, userName, setUserName, userAvatar, setUserAvatar, ...userInfo } = useAuth()
-  const [user] = useAuthState(auth)
 
   // console.log(`ユーザー名:${user?.displayName}`)
   // console.log(`アバターURL:${userAvatar}`)

@@ -1,13 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { provider, useAuth } from '../providers/GoogleLoginUserProvider'
-import { signInWithPopup } from 'firebase/auth'
 import { Button } from '@chakra-ui/react'
-import { useAuthState } from 'react-firebase-hooks/auth'
 
 // Googleサインインボタン
 export const SignInButton: React.FC<{ provider: typeof provider }> = ({ provider }) => {
-  const { auth, setSignInResult, userName, setUserName, userAvatar, setUserAvatar, handleSignIn } = useAuth()
-  const [user] = useAuthState(auth)
+  const { handleSignIn } = useAuth()
   const navigate = useNavigate()
 
   const signInWithGoogle = async () => {

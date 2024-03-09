@@ -11,7 +11,6 @@ export const UserIcon: React.FC<userIconProps> = (props) => {
   const { boxSize } = props
   const { auth } = useAuth()
   const [user] = useAuthState(auth)
-  const { userName, setUserName, userAvatar, setUserAvatar } = useAuth()
   if (!user) {
     return null
   } else {

@@ -59,9 +59,10 @@ interface AuthProviderProps {
 
 // AuthProviderコンポーネント作成
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  // const navigate = useNavigate()
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userDetails, setUserDetails] = useState<DocumentData | null>(null)
   const [signInResult, setSignInResult] = useState<any>(null)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userName, setUserName] = useState<string>('')
   // ユーザー情報の状態と更新関数を定義
   const [userInfo, setUserInfo] = useState({
