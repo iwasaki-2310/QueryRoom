@@ -9,7 +9,7 @@ import { useAuth } from '../providers/GoogleLoginUserProvider'
 export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
   const { userName, userAvatar } = useAuth()
 
-  const { setInputMessage, inputMessage, delayTime, setDelayTime, startCountDown, setIsSent, isCancel, isSent } = props
+  const { setInputMessage, inputMessage, delayTime, setDelayTime, startCountDown, setIsSent, isSent } = props
   const toast = useToast()
   const [timeLeft, setTimeLeft] = useState(delayTime ? delayTime * 60 : 0) // 秒単位で時間を設定
   const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null) // タイマーIDを保持する状態変数
@@ -24,7 +24,7 @@ export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
       setTimerId(null)
     }
     setTimeLeft(delayTime ? delayTime * 60 : 0)
-  }, [isSent, timerId, toast])
+  }, [delayTime, isSent, timerId, toast])
 
   const resetDelayTime = () => {
     setDelayTime && setDelayTime(0)
