@@ -94,7 +94,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // 概要:Google認証がされた際に呼び出される関数。Google認証情報のユーザー情報を元にユーザー情報をFirestoreに格納する
   // ======================================================
   const saveUserInfoToFirestore = async (user: User) => {
-    if (!user) return
     const userRef = doc(db, 'users', user.uid)
     await setDoc(
       userRef,
@@ -126,6 +125,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } catch (error) {
       console.error('ログインに失敗しました', error)
     }
+    // console.log(userInfo.userAvatar)
   }
   return (
     <AuthContext.Provider
@@ -137,7 +137,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setSignInResult,
         setUserName,
         ...userInfo,
-        setUserAvatar: (avatar: string) => setUserInfo({ ...userInfo, userAvatar: avatar }), // setUserAvatarを追加
+        setUserAvatar: (avatar: string) => setUserInfo({ ...userInfo, userAvatar: avatar }),
         handleSignIn,
       }}
     >

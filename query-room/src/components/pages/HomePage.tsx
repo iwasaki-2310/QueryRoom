@@ -6,9 +6,7 @@ import { useAuth } from '../providers/GoogleLoginUserProvider'
 
 export const HomePage: React.FC = () => {
   const { userAvatar } = useAuth()
-  useEffect(() => {
-    console.log(userAvatar)
-  }, [userAvatar])
+  useEffect(() => {}, [userAvatar])
 
   return (
     <>

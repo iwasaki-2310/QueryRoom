@@ -4,10 +4,11 @@ import { PrimaryButton } from './PrimaryButton'
 import { useToast } from '@chakra-ui/toast'
 import { addDoc, collection, getFirestore } from 'firebase/firestore'
 import { useParams } from 'react-router-dom'
-import { useAuth } from '../providers/GoogleLoginUserProvider'
+import { auth, useAuth } from '../providers/GoogleLoginUserProvider'
+import { onAuthStateChanged } from 'firebase/auth'
 
 export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
-  const { userName, userAvatar } = useAuth()
+  const { userAvatar, setUserAvatar } = useAuth()
 
   const { setInputMessage, inputMessage, delayTime, setDelayTime, startCountDown, setIsSent, isSent } = props
   const toast = useToast()
@@ -30,7 +31,7 @@ export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
     setDelayTime && setDelayTime(0)
   }
 
-  console.log(userAvatar)
+  // console.log(userAvatar)
 
   // ======================================================
   // 関数名: sendMessage
@@ -99,28 +100,32 @@ export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
       setTimerId(newTimerId)
     }
 
-    if (roomId && inputMessage && inputMessage.trim() !== '') {
-      const id = setTimeout(async () => {
-        try {
-          // console.log(userAvatar)
-          await addDoc(collection(db, 'rooms', roomId, 'messages'), {
-            message: inputMessage,
-            displayName: userName,
-            profilePicture: userAvatar,
-            createdAd: new Date(),
-          })
-          if (setInputMessage) {
-            setInputMessage('')
+    onAuthStateChanged(auth, (user) => {
+      if (roomId && inputMessage && inputMessage.trim() !== '') {
+        const id = setTimeout(async () => {
+          try {
+            setUserAvatar(userAvatar)
+            console.log(userAvatar)
+            await addDoc(collection(db, 'rooms', roomId, 'messages'), {
+              message: inputMessage,
+              senderId: user?.uid,
+              displayName: user?.displayName,
+              profilePicture: user?.photoURL,
+              createdAd: new Date(),
+            })
+            if (setInputMessage) {
+              setInputMessage('')
+            }
+            if (resetDelayTime) {
+              resetDelayTime() // delayTime をリセット
+            }
+          } catch (e) {
+            console.log('メッセージの送信に失敗しました。', e)
           }
-          if (resetDelayTime) {
-            resetDelayTime() // delayTime をリセット
-          }
-        } catch (e) {
-          console.log('メッセージの送信に失敗しました。', e)
-        }
-      }, delayTime && delayTime * 60000)
-      setTimerId(id)
-    }
+        }, delayTime && delayTime * 60000)
+        setTimerId(id)
+      }
+    })
   }
   // console.log(userAvatar)
 

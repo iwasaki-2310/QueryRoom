@@ -7,11 +7,9 @@ type messageProps = {
 export const Message: React.FC<messageProps> = ({ message }) => {
   return (
     <>
-      <p className="message__word">
-        <Linkify as="p" options={{ className: 'custom-link' }}>
-          {message}
-        </Linkify>
-      </p>
+      <div className="message__word">
+        <Linkify options={{ className: 'custom-link' }}>{message}</Linkify>
+      </div>
     </>
   )
 }
