@@ -101,7 +101,7 @@ export const MenuModal: FC<Props> = memo((props) => {
                 onClick={onClose}
                 buttonType={'escapeModal'}
                 onClose={onClose}
-                bgColor="#30A320"
+                bgColor="#00796B"
                 color="#fff"
               >
                 戻る
@@ -110,7 +110,7 @@ export const MenuModal: FC<Props> = memo((props) => {
                 buttonType={'makeNewRoom'}
                 roomName={roomName}
                 roomPassword={roomPass}
-                bgColor="#430B53"
+                bgColor="#1976D2"
                 color="#fff"
                 onClick={() => (isNew ? HandleCreateRoom(roomName, roomPass) : HandleSelectRoom(roomUrl, roomPass))}
               >

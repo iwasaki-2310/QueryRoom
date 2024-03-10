@@ -11,17 +11,6 @@ export const customTheme = extendTheme({
       '.custom-link': {
         color: '#0080ff',
       },
-      '.header': {
-        backgroundColor: 'customPurple.900',
-      },
-      '.menu__button': {
-        backgroundColor: 'customPurple.900',
-        _hover: {
-          color: 'customPurple.900',
-          backgroundColor: 'white',
-          transition: 'all 0.5s',
-        },
-      },
     },
   },
 })

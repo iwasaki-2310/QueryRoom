@@ -135,7 +135,7 @@ export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
         buttonType={'sendMessage'}
         setInputMessage={setInputMessage}
         inputMessage={inputMessage}
-        bgColor={'#430B53'}
+        bgColor={'#1976D2'}
         color={'#fff'}
         delayTime={delayTime || 0}
         resetDelayTime={resetDelayTime}

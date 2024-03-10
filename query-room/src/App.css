@@ -5,11 +5,59 @@ body {
   background: #CCBBCC;
 }
 
+.login-page__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 200px 0 0;
+  height: 100vh;
+  background: #90CAF9;
+}
+
+.login-page__title {
+color: white;
+font-size: 90px;
+}
+
+.login__button {
+  margin: 32px auto 0;
+  padding: 20px 0;
+  width: 390px;
+  background: #0D47A1;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 10px;
+  transition:all 0.5s;
+  :hover {
+    background: #fff;
+    color: #0D47A1;
+    transition:all 0.5s;
+  }
+}
+
 .header {
-  padding: 5px;
+  padding: 30px 5px 5px;
   width: 21.08vw;
   height: 100vh;
   max-width: 288px;
+  background: #90CAF9;
+}
+
+.signout-button {
+  display: flex;
+  margin: 40px auto 0;
+  padding: 16px 28px;
+  background: #1976D2;
+  border-radius: 10px;
+  color: #fff;
+  border: 1px solid #1976D2;
+  transition: all 0.5s;
+}
+.signout-button:hover {
+  background: #fff;
+  color: #1976D2;
+  border: 1px solid #1976D2;
+  transition: all 0.5s;
 }
 
 .menu__button {
@@ -19,15 +67,19 @@ justify-content: center;
 width: 23.79vw;
 max-width: 325px;
 padding: 50px 0;
+background: #1976D2;
 height: fit-content;
 border-radius: 10px;
+border: 2px solid #1976D2;
 color: white;
 font-weight: bold;
 transition: all 0.5s;
-  :hover {
-    background-color: white;
-    transition: all 0.5s;
-  }
+}
+.menu__button:hover {
+  background-color: white;
+  color: #1976D2;
+  border: 2px solid #1976D2;
+  transition: all 0.5s;
 }
 .menu__button + .menu__button {
   margin: 0 0 0 100px;
@@ -57,6 +109,8 @@ transition: all 0.5s;
   padding: 10px 30px;
   justify-content: space-between;
   align-items: center;
+  background: #ECEFF1;
+  border-bottom: 1px solid gray;
 }
 
 .chatroom__header__name {
@@ -89,11 +143,11 @@ transition: all 0.5s;
 }
 
 .message__part__current-user {
-  background: #DFF6F3;
+  background: #fff;
   
 }
 .message__part__other-user {
-  background: #0bf9bb61;
+  background: #E3F2FD;
 }
 
 .message__part:last-of-type::after {

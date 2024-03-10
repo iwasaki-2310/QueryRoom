@@ -36,7 +36,8 @@ export const PrimaryButton: FC<ButtonProps> = (props) => {
       backgroundColor={bgColor}
       color={color}
       transition="all 0.5s"
-      _hover={{ backgroundColor: color, color: bgColor, transition: 'all 0.5s' }}
+      border={`1px solid ${bgColor}`}
+      _hover={{ backgroundColor: color, color: bgColor, transition: 'all 0.5s', border: `1px solid ${bgColor}` }}
     >
       {children}
     </Button>
