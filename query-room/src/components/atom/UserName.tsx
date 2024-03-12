@@ -1,26 +1,22 @@
-import { Text } from '@chakra-ui/react'
 import { useAuth } from '../providers/GoogleLoginUserProvider'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
-type UserNameCSS = {
-  mt?: string
-  ml?: string
-  fontSize?: string
-  fontWeight?: string
-  color?: string
+type UserNameProps = {
+  purpose: string
+  displayName?: string
 }
 
-export const UserName: React.FC<UserNameCSS> = (props) => {
-  const { mt, ml, fontSize, fontWeight, color } = props
+export const UserName: React.FC<UserNameProps> = ({ purpose, displayName }) => {
   const { auth } = useAuth()
   const [user] = useAuthState(auth)
+
   if (!user) {
     return null
   } else {
     return (
-      <Text mt={mt} ml={ml} fontSize={fontSize} color={color} fontWeight={fontWeight}>
+      <p className={purpose === 'forHeader' ? 'user-name__header' : 'user-name__message-area'}>
         {user.displayName || undefined}
-      </Text>
+      </p>
     )
   }
 }

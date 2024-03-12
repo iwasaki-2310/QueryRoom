@@ -26,7 +26,7 @@ export const InputButtonsRight: React.FC<InputMessageProps> = (props) => {
   }
 
   return (
-    <div className="Input-buttons__right">
+    <div className="Input-buttons__right" style={isQuestionMode && window.innerWidth < 768 ? { width: '100%' } : {}}>
       {/* 時間を指定して送信 */}
       {isQuestionMode && <DelayInput setDelayTime={handleSetDelayTime} delayTime={delayTime} />}
 

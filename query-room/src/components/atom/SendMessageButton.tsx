@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { InputMessageProps } from '../../types/inputMessage'
 import { PrimaryButton } from './PrimaryButton'
 import { useToast } from '@chakra-ui/toast'
@@ -6,6 +6,7 @@ import { addDoc, collection, getFirestore } from 'firebase/firestore'
 import { useParams } from 'react-router-dom'
 import { auth, useAuth } from '../providers/GoogleLoginUserProvider'
 import { onAuthStateChanged } from 'firebase/auth'
+import { useBreakpointValue } from '@chakra-ui/react'
 
 export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
   const { userAvatar, setUserAvatar } = useAuth()
@@ -17,6 +18,7 @@ export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
 
   const db = getFirestore()
   const { roomId } = useParams()
+  const toastWidth = useBreakpointValue({ base: '30%', md: 'auto' })
 
   useEffect(() => {
     if (!isSent && timerId) {
@@ -27,17 +29,17 @@ export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
     setTimeLeft(delayTime ? delayTime * 60 : 0)
   }, [delayTime, isSent, timerId, toast])
 
-  const resetDelayTime = () => {
-    setDelayTime && setDelayTime(0)
-  }
-
-  // console.log(userAvatar)
+  const resetDelayTime = useCallback(() => {
+    if (setDelayTime) {
+      setDelayTime(0)
+    }
+  }, [setDelayTime])
 
   // ======================================================
   // 関数名: sendMessage
   // 概要: 送信ボタンがクリックされたら、トーストを表示。そして、入力したメッセージをDBのmessagesに格納して、テキストエリアを初期化
   // ======================================================
-  const sendMessage = async () => {
+  const sendMessage = useCallback(async () => {
     setIsSent && setIsSent(true)
     console.log(`送信モード：${isSent}`)
 
@@ -55,6 +57,9 @@ export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
           duration: null,
           isClosable: true,
           position: 'bottom-left',
+          containerStyle: {
+            width: toastWidth,
+          },
         })
       }
 
@@ -126,8 +131,40 @@ export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
         setTimerId(id)
       }
     })
-  }
-  // console.log(userAvatar)
+  }, [
+    isSent,
+    delayTime,
+    toast,
+    startCountDown,
+    setIsSent,
+    db,
+    inputMessage,
+    resetDelayTime,
+    roomId,
+    setInputMessage,
+    setUserAvatar,
+    timeLeft,
+    timerId,
+    userAvatar,
+  ])
+
+  // ======================================================
+  // 関数名: useEffectフック
+  // 概要: シフトキーとエンターキーが同時に押された時に、送信ボタンが押されるように
+  // ======================================================
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.shiftKey && event.key === 'Enter') {
+        sendMessage()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [sendMessage]) // sendMessage 関数が変更された場合に再購読
 
   return (
     <div className="send-message__button">

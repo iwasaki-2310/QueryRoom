@@ -1,9 +1,31 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background: #CCBBCC;
+  font-family: "kiwi-maru", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
+
+.u_pc {
+  display: block;
+}
+@media screen and (max-width: 767px){
+  .u_pc {
+    display: none;
+  }
+}
+
+.template__base {
+  display: flex;
+  height: 100vh;
+}
+@media screen and (max-width: 767px){
+  .template__base {
+    flex-direction: column;
+  }
+}
+
 
 .login-page__body {
   display: flex;
@@ -15,8 +37,18 @@ body {
 }
 
 .login-page__title {
+font-family: "responder-p", sans-serif;
 color: white;
+font-weight: bold;
+letter-spacing: 10px;
 font-size: 90px;
+}
+
+@media screen and (max-width: 767px){
+  .login-page__title {
+    text-align: center;
+    font-size: 45px;
+  }
 }
 
 .login__button {
@@ -26,28 +58,142 @@ font-size: 90px;
   background: #0D47A1;
   color: #fff;
   font-size: 20px;
+  font-weight: bold;
   border-radius: 10px;
+  border: 2px solid #0D47A1;
   transition:all 0.5s;
-  :hover {
-    background: #fff;
-    color: #0D47A1;
-    transition:all 0.5s;
+}
+@media screen and (max-width: 767px){
+  .login__button {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 18px;
   }
+}
+
+.login__button:hover {
+  background: #fff;
+  border: 2px solid #0D47A1;
+  color: #0D47A1;
+  transition:all 0.5s;
+
 }
 
 .header {
   padding: 30px 5px 5px;
   width: 21.08vw;
-  height: 100vh;
+  height: 100%;
   max-width: 288px;
   background: #90CAF9;
+  flex-shrink: 0;
 }
+@media screen and (max-width: 767px){
+  .header {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    width: 100%;
+    max-width: initial;
+    height: fit-content;
+  }
+}
+
+.header__inner {
+  position: sticky;
+  top: 30px;
+  left: 50%;
+}
+@media screen and (max-width: 767px){
+  .header__inner {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.header__logo {
+  font-family: "responder-p", sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  letter-spacing: 3px;
+}
+@media screen and (max-width: 767px){
+  .header__logo {
+    font-size: 30px;
+  }
+}
+
+.header__contents {
+  margin: 35px 0 0;
+}
+@media screen and (max-width: 767px){
+  .header__contents {
+    display: none;
+    flex-direction: column;
+    margin: 10px auto 0;
+  }
+}
+
+.user-info__wrapper__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 767px){
+  .user-info__wrapper__header{
+    margin: 0 auto;
+  }
+}
+
+.user-icon__header {
+  width: 58px;
+  height: 58px;
+  border-radius: 9999px;
+}
+@media screen and (max-width: 767px){
+  .user-icon__header {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+.user-name__header {
+margin: 2px 0 0 15px;
+font-size: 18px;
+font-weight: bold;
+color: #fff;
+letter-spacing: 3px;
+
+}
+@media screen and (max-width: 768px) {
+  .user-name__header {
+    margin: 0 0 0 10px;
+    color: #000;
+    font-size: 15px;
+  }
+}
+
+.user-name__message-area {
+  margin-top: -10px;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1.8px;
+}
+
 
 .signout-button {
   display: flex;
   margin: 40px auto 0;
   padding: 16px 28px;
   background: #1976D2;
+  font-weight: bold;
   border-radius: 10px;
   color: #fff;
   border: 1px solid #1976D2;
@@ -58,6 +204,31 @@ font-size: 90px;
   color: #1976D2;
   border: 1px solid #1976D2;
   transition: all 0.5s;
+}
+@media screen and (max-width: 767px){
+  .signout-button {
+    justify-content: center;
+    margin: 15px auto 0;
+    padding: 10px 18px;
+    font-size: 15px;
+    background: #1976D2 !important;
+    color: white !important;
+    width: 80% !important;
+  }
+}
+
+.home__buttons {
+  display: flex;
+  justify-content: center;
+  margin: 240px 0 0;
+  width: 100%;
+}
+@media screen and (max-width: 767px){
+  .home__buttons {
+    flex-direction: column;
+    margin: 65px 0 0;
+    padding: 55px 40px 0;
+  }
 }
 
 .menu__button {
@@ -81,9 +252,24 @@ transition: all 0.5s;
   border: 2px solid #1976D2;
   transition: all 0.5s;
 }
+@media screen and (max-width: 767px){
+  .menu__button {
+    margin: 0 auto;
+    padding: 20px 0;
+    width: 100%;
+    max-width: initial;
+  }
+}
+
 .menu__button + .menu__button {
   margin: 0 0 0 100px;
 }
+@media screen and (max-width: 767px){
+  .menu__button + .menu__button {
+    margin: 50px auto 0;
+  }
+}
+
 .menu__button__title {
   font-size: 20px;
   white-space: wrap;
@@ -93,10 +279,16 @@ transition: all 0.5s;
   white-space: wrap;
   font-size: 16px;
 }
+@media screen and (max-width: 767px){
+  .menu__button__description {
+    margin: 45px auto 0;
+  }
+}
 
 .menu__button p {
   width: 100%;
   text-align: center;
+  letter-spacing: 4px;
 }
 
 .missing-text {
@@ -105,17 +297,34 @@ transition: all 0.5s;
 }
 
 .chatroom__header {
+  position: sticky;
+  top: 0;
+  left: 21.08vw;
   display: flex;
   padding: 10px 30px;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   background: #ECEFF1;
   border-bottom: 1px solid gray;
+  z-index: 9998;
+}
+@media screen and (max-width: 767px){
+  .chatroom__header {
+    top: 65px;
+    width: 100%;
+    padding: 6px 15px;
+  }
 }
 
 .chatroom__header__name {
   font-size: 24px;
   font-weight: bold;
+}
+@media screen and (max-width: 767px){
+  .chatroom__header__name {
+    font-size: 20px;
+  }
 }
 
 .chatArea {
@@ -124,15 +333,27 @@ transition: all 0.5s;
 }
 
 .chatArea__body {
+  position: sticky;
+  top: 61px;
+  left: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+@media screen and (max-width: 767px){
+  .chatArea__body {
+    top: 110px;
+  }
+}
 
 .message__area {
   width: 100%;
-  height: 990px;
+  /* height: 982px; */
   overflow-y: scroll;
+}
+@media screen and (max-width: 767px){
+  .message__area {
+  }
 }
 
 
@@ -157,6 +378,11 @@ transition: all 0.5s;
 .message__header {
   padding: 0 0 0 30px;
 }
+@media screen and (max-width: 767px){
+  .message__header {
+    padding: 0 0 0 10px;
+  }
+}
 
 .message__head {
   align-items: center;
@@ -174,14 +400,29 @@ transition: all 0.5s;
   padding: 0 20px 0 0;
   font-size: 16px;
 }
+@media screen and (max-width: 767px){
+  .message__word {
+    margin: -10px 0 0 73px;
+    padding: 0 10px 0 0;
+  }
+}
 
 .input-message {
-  position: relative;
+  position: fixed;
   bottom: 0;
   padding: 20px 20px 0;
   margin: 0 auto;
-  width: 96.28%;
-  height: 244px;
+  width: 79.28%;
+  /* height: 244px; */
+  height: initial;
+}
+@media screen and (max-width: 767px){
+  .input-message {
+    bottom: 3px;
+    padding: 0 10px;
+    width: 100%;
+    height: initial;
+  }
 }
 
 .input-message__body {
@@ -194,6 +435,12 @@ transition: all 0.5s;
   border: 1px solid #707070;
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
 }
+@media screen and (max-width: 767px){
+  .input-message__body {
+    padding: 10px;
+    height: 100%;
+  }
+}
 
 .input-message__word {
   outline: none;
@@ -201,6 +448,12 @@ transition: all 0.5s;
   height: 150px;
   font-size: 16px;
   line-height: calc(28 / 22);
+}
+@media screen and (max-width: 767px){
+  .input-message__word {
+    min-height: 70px;
+    height: initial;
+  }
 }
 
 .input-message__word.input-message__word__question {
@@ -227,6 +480,22 @@ transition: all 0.5s;
   display: flex;
   justify-content: space-between;
 }
+@media screen and (max-width: 767px){
+  .input-message__footer {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .input-message__footer button {
+    font-size: 13px;
+  }
+}
+
+.change-mode__button {
+  margin: 10px 0 0;
+}
+
 .question-mode__desc::after {
   content: "";
   position: absolute;
@@ -241,6 +510,13 @@ transition: all 0.5s;
   display: flex;
   align-items: flex-end;
 }
+@media screen and (max-width: 767px){
+  .Input-buttons__right {
+    margin: 10px 0 0;
+    justify-content: space-between;
+  }
+}
+
 .Input-buttons__right__cancel-text {
   margin: 0 0 3px 15px;
   font-size: 12px;
@@ -258,4 +534,19 @@ transition: all 0.5s;
 
 .delay-input__text {
   margin: 0 0 0 5px;
+}
+
+
+@media screen and (max-width: 767px){
+.chakra-toast {
+  position: fixed;
+  bottom: 150px;
+  left: 50%;
+  transform: translate(-50%, 0) !important;
+  width: 54%;
+}
+.chakra-toast__inner.css-895jlr {
+  width: 100%;
+  min-width: 50px;
+}
 }

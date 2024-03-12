@@ -1,14 +1,15 @@
 import { Box } from '@chakra-ui/react'
-import { doc, getFirestore, onSnapshot, DocumentData, collection, query, orderBy } from 'firebase/firestore'
+import { doc, getFirestore, onSnapshot, DocumentData, collection, query, orderBy, getDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ChatHeader } from '../organisms/chat/ChatHeader'
 import { ChatMessage } from '../molecules/ChatMessage'
 import { InputMessage } from '../organisms/chat/InputMessage'
 import { auth } from '../providers/GoogleLoginUserProvider'
-import { onAuthStateChanged } from 'firebase/auth'
+import { User, onAuthStateChanged } from 'firebase/auth'
 
 export const RoomPage = () => {
+  const navigate = useNavigate()
   const { roomId } = useParams()
   const [roomData, setRoomData] = useState<DocumentData | null>(null)
   const db = getFirestore()
@@ -16,9 +17,6 @@ export const RoomPage = () => {
   const [messages, setMessages] = useState<
     { message: string; time: string; profilePicture: string; displayName: string; senderId: string }[]
   >([])
-
-  // console.log(`ユーザー名:${user?.displayName}`)
-  // console.log(`アバターURL:${userAvatar}`)
 
   // ======================================================
   // 関数名: エフェクトフック
@@ -72,6 +70,34 @@ export const RoomPage = () => {
       }
     })
   }, [roomId, db])
+
+  useEffect(() => {
+    const messageArea = document.querySelector('.message__area')
+    if (messageArea) {
+      messageArea.scrollTop = messageArea.scrollHeight
+    }
+  }, [messages])
+
+  // ======================================================
+  // 関数名: onAuthStateChanged（Firestoreのメソッド）
+  // 概要: ユーザー情報が存在するかを入室時にチェック。ユーザー情報が存在しなければHomeにリダイレクト
+  // ======================================================
+  onAuthStateChanged(auth, async (user: User | null) => {
+    if (user) {
+      const fetchRoomData = async () => {
+        if (roomId) {
+          const userRef = doc(db, 'users', user.uid)
+          const userSnap = await getDoc(userRef)
+          const roomRef = doc(db, 'rooms', roomId)
+          const roomSnap = await getDoc(roomRef)
+          if (!roomSnap.exists() || !userSnap.data()?.rooms?.includes(roomId)) {
+            navigate('../../home')
+          }
+        }
+      }
+      fetchRoomData()
+    }
+  })
 
   return (
     <>

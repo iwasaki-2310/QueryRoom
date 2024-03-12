@@ -30,9 +30,6 @@ export const DelayInput: React.FC<InputMessageProps> = (props) => {
               {time}
             </MenuItem>
           ))}
-          <MenuItem className="delay-input__button" onClick={() => updateDelayTime(0.07)}>
-            1
-          </MenuItem>
         </MenuList>
       </Menu>
     </>
