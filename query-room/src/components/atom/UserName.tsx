@@ -15,7 +15,7 @@ export const UserName: React.FC<UserNameProps> = ({ purpose, displayName }) => {
   } else {
     return (
       <p className={purpose === 'forHeader' ? 'user-name__header' : 'user-name__message-area'}>
-        {user.displayName || undefined}
+        {displayName || undefined}
       </p>
     )
   }

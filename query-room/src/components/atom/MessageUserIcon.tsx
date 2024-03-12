@@ -9,7 +9,6 @@ type UserIconProps = {
 
 export const MessageUserIcon: React.FC<UserIconProps> = ({ boxSize, userName, userAvatar }) => {
   if (!userAvatar) {
-    // userAvatarが空の場合は何も表示しない
     return null
   }
   return <Image borderRadius="full" boxSize={boxSize} src={userAvatar} alt={userName} />
