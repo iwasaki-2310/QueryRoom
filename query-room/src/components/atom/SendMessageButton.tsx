@@ -146,6 +146,7 @@ export const SendMessageButton: React.FC<InputMessageProps> = (props) => {
     timeLeft,
     timerId,
     userAvatar,
+    toastWidth,
   ])
 
   // ======================================================
