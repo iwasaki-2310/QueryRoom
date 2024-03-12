@@ -72,10 +72,16 @@ export const RoomPage = () => {
   }, [roomId, db])
 
   useEffect(() => {
-    const messageArea = document.querySelector('.message__area')
-    if (messageArea) {
-      messageArea.scrollTop = messageArea.scrollHeight
-    }
+    setTimeout(() => {
+      const messageArea = document.querySelector('.message__area')
+      if (messageArea) {
+        if (messages.length === 1) {
+          window.scrollTo(0, 0)
+        } else {
+          messageArea.scrollTop = messageArea.scrollHeight
+        }
+      }
+    }, 100)
   }, [messages])
 
   // ======================================================

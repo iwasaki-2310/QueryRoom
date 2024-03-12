@@ -342,22 +342,15 @@ transition: all 0.5s;
 }
 @media screen and (max-width: 767px){
   .chatArea__body {
-    top: initial;
-    margin: 65px 0 0;
+    position: relative;
+    top: 66px;
   }
 }
 
 .message__area {
   width: 100%;
-  /* height: 982px; */
   overflow-y: scroll;
 }
-@media screen and (max-width: 767px){
-  .message__area {
-  }
-}
-
-
 
 .message__part {
   position: relative;
