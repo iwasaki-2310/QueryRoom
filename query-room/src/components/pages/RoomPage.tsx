@@ -1,15 +1,15 @@
 import { Box } from '@chakra-ui/react'
-import { doc, getFirestore, onSnapshot, DocumentData, collection, query, orderBy, getDoc } from 'firebase/firestore'
+import { doc, getFirestore, onSnapshot, DocumentData, collection, query, orderBy } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ChatHeader } from '../organisms/chat/ChatHeader'
 import { ChatMessage } from '../molecules/ChatMessage'
 import { InputMessage } from '../organisms/chat/InputMessage'
 import { auth } from '../providers/GoogleLoginUserProvider'
-import { User, onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useRoomAccessCheck } from '../../hooks/useRoomAccessCheck'
 
 export const RoomPage = () => {
-  const navigate = useNavigate()
   const { roomId } = useParams()
   const [roomData, setRoomData] = useState<DocumentData | null>(null)
   const db = getFirestore()
@@ -85,25 +85,10 @@ export const RoomPage = () => {
   }, [messages])
 
   // ======================================================
-  // 関数名: onAuthStateChanged（Firestoreのメソッド）
+  // 関数名: useRoomAccessCheck（カスタムフック）
   // 概要: ユーザー情報が存在するかを入室時にチェック。ユーザー情報が存在しなければHomeにリダイレクト
   // ======================================================
-  onAuthStateChanged(auth, async (user: User | null) => {
-    if (user) {
-      const fetchRoomData = async () => {
-        if (roomId) {
-          const userRef = doc(db, 'users', user.uid)
-          const userSnap = await getDoc(userRef)
-          const roomRef = doc(db, 'rooms', roomId)
-          const roomSnap = await getDoc(roomRef)
-          if (!roomSnap.exists() || !userSnap.data()?.rooms?.includes(roomId)) {
-            navigate('../../home')
-          }
-        }
-      }
-      fetchRoomData()
-    }
-  })
+  useRoomAccessCheck()
 
   return (
     <>

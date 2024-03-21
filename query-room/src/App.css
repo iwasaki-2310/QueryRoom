@@ -458,6 +458,11 @@ transition: all 0.5s;
   margin: 0 0 0 25px;
 }
 
+.chatroom__header__btns {
+  display: flex;
+  align-items: center;
+}
+
 .chatroom__header__btns button + button {
   margin: 0 0 0 30px;
 }
@@ -517,9 +522,6 @@ transition: all 0.5s;
   font-weight: bold;
 }
 
-.delay-input__button {
-}
-
 .delay-input__box {
   width: 55px;
   height: 34px;
@@ -532,15 +534,37 @@ transition: all 0.5s;
 
 
 @media screen and (max-width: 767px){
-.chakra-toast {
-  position: fixed;
-  bottom: 150px;
-  left: 50%;
-  transform: translate(-50%, 0) !important;
-  width: 54%;
+  .chakra-toast {
+    position: fixed;
+    bottom: 150px;
+    left: 50%;
+    transform: translate(-50%, 0) !important;
+    width: 54%;
+  }
+  .chakra-toast__inner.css-895jlr {
+    width: 100%;
+    min-width: 50px;
+  }
 }
-.chakra-toast__inner.css-895jlr {
-  width: 100%;
-  min-width: 50px;
+
+.chatroom__header__avatars {
+  display: flex;
+  margin: 0 30px 0 0;
 }
+
+.chatroom__header__avatar {
+  border-radius: 9999px;
+  width: 40px;
+  height: 40px;
+  transition: all .3s;
+}
+@media screen and (max-width: 767px){
+  .chatroom__header__avatar {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.chatroom__header__avatar + .chatroom__header__avatar {
+  margin: 0 0 0 -10px;
 }
