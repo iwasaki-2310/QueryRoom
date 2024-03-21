@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import { doc, getFirestore, onSnapshot, DocumentData, collection, query, orderBy } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { ChatHeader } from '../organisms/chat/ChatHeader'
 import { ChatMessage } from '../molecules/ChatMessage'
 import { InputMessage } from '../organisms/chat/InputMessage'
